@@ -1,2 +1,33 @@
-hola fkdfkfsflksfksf
-
+# Edit this file to introduce tasks to be run by cron.
+# 
+# Each task to run has to be defined through a single line
+# indicating with different fields when the task will be run
+# and what command to run for the task
+# 
+# To define the time you can provide concrete values for
+# minute (m), hour (h), day of month (dom), month (mon),
+# and day of week (dow) or use '*' in these fields (for 'any').
+# 
+# Notice that tasks will be started based on the cron's system
+# daemon's notion of time and timezones.
+# 
+# Output of the crontab jobs (including errors) is sent through
+# email to the user the crontab file belongs to (unless redirected).
+# 
+# For example, you can run a backup of all your user accounts
+# at 5 a.m every week with:
+# 0 5 * * 1 tar -zcf /var/backups/home.tgz /home/
+# 
+# For more information see the manual pages of crontab(5) and cron(8)
+# 
+# m h  dom mon dow   command
+1️⃣ Apagado automático 📴
+📅 Todos los días, cada hora entre las 18:30 y las 23:30, el sistema se apagará inmediatamente.
+30 18-23 * * * sudo shutdown -h now
+2️⃣ El grito en la madrugada 😱🔊
+⏰ A las 03:33 AM, se reproducirá un archivo de audio (grito.mp3). Un susto asegurado para quien esté cerca. 👀
+33 3 * * * mpg123 ~/Música/grito.mp3
+3️⃣ El mensaje misterioso 🕵️‍♂️
+🕛 Cada hora en punto, se añadirá una nueva línea al archivo mensajes_secretos.txt con la frase:
+"Ellos están observando..." 👁️✨
+0 * * * * echo "Ellos están observando... $(date)" >> ~/mensajes_secretos.txt
