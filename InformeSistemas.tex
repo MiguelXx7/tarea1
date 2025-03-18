@@ -1,0 +1,249 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{wrapfig}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+\begin{document}
+
+\title{Tarea 1: sistemas operativos}
+
+\author{\IEEEauthorblockN{1\textsuperscript{st} Miguel Angel Jimenez Morales - 2358571}
+\IEEEauthorblockN{2\textsuperscript{nd} Dikersson Alexis Cañon Vanegas - 2366486}
+
+
+\IEEEauthorblockA{\textit{Estudiantes de Ingenier\'ia de Telecomunicaciones} \\ \textit{Facultad de Ingeniería} \\
+\textit{Universidad Santo Tomás de Aquino}\\
+Bogotá, Colombia}}
+
+\date{\today}
+
+\pagestyle{plain}
+
+\maketitle
+
+\begin{abstract}
+En esta tarea se instalan unas maquinas virtuales a través del hipervisor y se conectan entre si
+\end{abstract}
+
+\begin{IEEEkeywords}
+Qemu, Maquina virtual, cron, ubuntu, Windows, Centos, Scienticlinus, hipervisor.
+\end{IEEEkeywords}
+
+\section{Introducción}
+En el siguiente documento se desarrolla el procedimiento que se siguió para desarrollar la tarea.
+
+\section{Objetivo general}
+Aprender a manejar maquinas virtuales, comandos cron, crontab y nmap.
+
+\section{Objetivos específicos}
+
+\begin{itemize}
+    \item Instalar las siguientes maquinas virtuales en QEMU:
+        Windows
+        Centos
+        Scientific Linux
+    \item Utilizar nmap para mapear la red interna del pc de manera local cuando las máquinas virtuales estén encendidas y de manera global para visualizar que ve el pc de manera global.
+    \item Utilizar Cron y Crontab, teniendo presente lo visto en la clase generar tres tareas diferentes automáticas.
+    \item Subir los scripts y todo el desarrollo explicado de manera descriptiva a un repositorio de GitHub, la carpeta se debe llamar "Tarea 1".
+\end{itemize}
+\section{Marco Teórico}
+\section{Virtualización con QEMU}
+La virtualización es una tecnología que permite ejecutar múltiples sistemas operativos en una misma máquina física mediante software especializado. QEMU (Quick Emulator) es un emulador y virtualizador de código abierto que permite la creación y gestión de máquinas virtuales. Cuando se combina con KVM (Kernel-based Virtual Machine), QEMU puede ofrecer virtualización acelerada por hardware en sistemas basados en Linux, proporcionando un rendimiento cercano al nativo.
+
+QEMU soporta una amplia variedad de arquitecturas, lo que lo convierte en una herramienta versátil para pruebas y despliegue de sistemas operativos como Windows, CentOS y Scientific Linux. Su capacidad para emular hardware permite la instalación de diferentes sistemas operativos sin necesidad de modificar la máquina física.
+
+\section{Sistemas Operativos en QEMU}
+\begin{itemize}
+\item \textbf{Windows}: Uno de los sistemas operativos más utilizados en el mundo, diseñado principalmente para entornos de escritorio y servidores. Para su instalación en QEMU, se requiere una imagen ISO y controladores adicionales, como los VirtIO, para optimizar el rendimiento.
+\item \textbf{CentOS}: Distribución basada en Red Hat Enterprise Linux (RHEL), enfocada en estabilidad y soporte empresarial. Es ampliamente usada en servidores y entornos de desarrollo.
+\item \textbf{Scientific Linux}: Basada en RHEL, está diseñada para satisfacer las necesidades científicas y académicas, proporcionando estabilidad y compatibilidad con software científico.
+\end{itemize}
+
+\section{Mapeo de Red con Nmap}
+Nmap (Network Mapper) es una herramienta de código abierto utilizada para exploración de redes y auditoría de seguridad. Permite descubrir dispositivos conectados a una red, identificar servicios y detectar posibles vulnerabilidades. En este caso, se usará para:
+\begin{itemize}
+\item \textbf{Mapeo de red local}: Identificar las máquinas virtuales activas en la red interna del sistema anfitrión.
+\item \textbf{Mapeo global}: Analizar cómo se percibe la conexión del sistema en internet y detectar puertos abiertos expuestos.
+\end{itemize}
+
+\section{Automatización con Cron y Crontab}
+Cron es un servicio de Unix/Linux que permite programar la ejecución de tareas de manera periódica. Crontab es el archivo de configuración donde se definen las tareas programadas. Estas tareas pueden incluir:
+\begin{itemize}
+\item \textbf{Ejecución de scripts de mantenimiento} (ejemplo: limpieza de archivos temporales).
+\item \textbf{Respaldo automático de datos} (ejemplo: copia de seguridad de archivos críticos).
+\item \textbf{Monitoreo de procesos y recursos} (ejemplo: envío de reportes del uso del sistema).
+\end{itemize}
+
+\section{Control de Versiones con GitHub}
+GitHub es una plataforma para la gestión de código fuente basada en Git. Permite almacenar, gestionar y colaborar en proyectos de desarrollo de software. En esta actividad, se utilizará para almacenar los scripts y la documentación en un repositorio, organizado en una carpeta denominada \texttt{Tarea 1}.
+
+\section{Overleaf y Documentación en Ámbito Académico}
+Overleaf es una plataforma en línea para la creación y edición de documentos en ámbito académico utilizando \LaTeX{}. \LaTeX{} es un sistema de composición de textos ampliamente utilizado en publicaciones científicas y académicas, debido a su capacidad para manejar ecuaciones matemáticas, referencias y formateo avanzado de documentos.
+
+En esta actividad, se utilizará Overleaf para documentar el proceso de instalación y configuración de las máquinas virtuales, el uso de Nmap, la automatización con Cron y la gestión del repositorio en GitHub.
+
+\section{Desarrollo de la tarea}\textbf{}
+
+A continuación se mostrará paso por paso el desarrollo de la tarea 1, atendiendo a los objetivos planteados. Como primera instancia tenemos la instalación de maquinas virtuales. La cual se hace con lo siguientes pasos:
+Se digitó en el bash de linux:
+
+sudo apt install qemu-kvm virt-manager virtinst libvirt-clients bridge-utils libvirt-daemon-system
+
+Esto instalara las dependencias necesarias para nuestro entorno virtual. 
+
+sudo systemctl enable --now libvirtd
+sudo systemctl start libvirtd
+sudo systemctl status libvirtd
+
+Los comandos mostrados están relacionados con la configuración y gestión de libvirt, un conjunto de herramientas para administrar máquinas virtuales en Linux. Primero, sudo systemctl enable --now libvirtd habilita y arranca el servicio libvirtd de inmediato, asegurando que se inicie automáticamente con el sistema. Luego, sudo systemctl start libvirtd inicia el servicio manualmente (aunque esto es redundante si ya se ejecutó el primer comando), y sudo systemctl status libvirtd verifica su estado. Los siguientes comandos, sudo usermod -aG kvm $USER y sudo usermod -aG libvirt $USER, agregan al usuario actual a los grupos kvm y libvirt, otorgándole permisos para gestionar máquinas virtuales sin necesidad de privilegios de superusuario. Para que los cambios surtan efecto, es necesario cerrar sesión o reiniciar el sistema.
+
+Finalmente para abrir los entornos virtuales se ejecuta virt manager. 
+
+sudo virt-manager.
+
+A continuación se muestra esta configuración en el bash:
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale = 0.30]{Informe2/Imagenes/habilitar.jpg}
+\caption{Se habilita la administración para maquinas virtuales}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale = 0.30]{Informe2/Imagenes/Inicio.jpg}
+\caption{Se inicializa la maquina virtual}
+\end{figure}
+
+Se mostrara una ventana similar a esta:
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale = 0.3]{Informe2/Imagenes/ventana.jpg}
+\caption{Ventana de Virt Manager}
+\end{figure}
+
+A continuación se muestra como se configuran las maquinas virtuales desde el bash:
+
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale = 0.1]{Informe2/Imagenes/1p.jpg}
+\caption{Configuración de la maquina virtual.}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale = 0.2]{Informe2/Imagenes/2p.jpg}
+\caption{Configuración de la maquina virtual.}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale = 0.15]{Informe2/Imagenes/3p.jpg}
+\caption{Configuración de la maquina virtual.}
+\end{figure}
+
+Las líneas de comando configuran máquinas virtuales en QEMU con KVM en Ubuntu, emulando una arquitectura x86-64 con KVM habilitado, asignando 4 GB de RAM y 2 núcleos de CPU. Se montan discos en formato QCOW2 y se utilizan archivos ISO de instalación, configurando el arranque desde el CD. La red se establece con -netdev user,id=net0 y un adaptador e1000, mientras que la visualización se optimiza con -vga virtio o -vga qxl.
+
+Una vez preparadas las maquinas virtuales, se procede con el segundo objetivo el cual es mapear la red con nmap. 
+El siguiente comando nos instala nmap, con el cual haremos un scanning de red entre las maquinas virtuales.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale = 0.25]{Informe2/Imagenes/Install.jpg}
+\caption{Instalación de nmap para el mapeo de red entre Maquinas virtuales}
+\end{figure}
+
+A continuación se ejecuta un comando para saber las direcciones de las maquinas activas y de instancia local:
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale = 0.2]{Informe2/Imagenes/ip.jpg}
+\caption{Comando ip a, muestra maquinas virtuales activas}
+\end{figure}
+
+A continuación se muestra la configuración de cada una de estas maquinas virtuales.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale = 0.22]{Informe2/Imagenes/ifcon.jpg}
+\caption{Muestra la configuración de red de cada maquina virtual y la configuración local }
+\end{figure}
+
+A continuación se muestra un comando para ver la tabla de enrutamiento.
+
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale = 0.25]{Informe2/Imagenes/iproute.jpg}
+\caption{Muestra la tabla de enrutamiento}
+\end{figure}
+
+El comando “ip route” se utiliza para mostrar la tabla de enrutamiento del sistema, indicando cómo se encamina el tráfico hacia diferentes redes o direcciones IP. En la salida observada, se detalla la ruta por defecto (default) que dirige todo el tráfico a la puerta de enlace 192.168.65.32 a través de la interfaz wlp0s20f3, con un origen en la dirección 192.168.65.196. Además, se listan rutas específicas para las redes 192.168.65.0/24 y 192.168.122.0/24, donde se señala la interfaz correspondiente (wlp0s20f3 y virbr0, respectivamente), la dirección IP de origen y el tipo de protocolo que ha definido estas rutas (en este caso, DHCP o kernel).
+
+El comando “sudo nmap -sV -O 192.168.122.0/24” realiza un escaneo de toda la subred 192.168.122.0/24 para detectar hosts activos, puertos abiertos y sistemas operativos. En la salida se observan tres máquinas: 192.168.122.16 y 192.168.122.32, ambas con el puerto 22 (SSH) abierto y con coincidencias de Linux en distintas versiones de kernel, y 192.168.122.169, que muestra el puerto 5357 (HTTPAPI de Microsoft) y se identifica como un sistema Windows (posiblemente desde XP hasta Windows Server 2019). Además, las direcciones MAC indican que se trata de interfaces de red virtuales (QEMU), lo cual sugiere que estas máquinas están ejecutándose como máquinas virtuales.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale = 0.14]{Informe2/Imagenes/sudonmap.jpg}
+\caption{Muestra las maquinas virtuales}
+\end{figure}
+
+A continuación se muestra el cron o crontab, con una funcion programa, para el github esta completo.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale = 0.35]{Informe2/Imagenes/cron.jpg}
+\caption{Muestra las maquinas virtuales}
+\end{figure}
+
+
+\subsection{Desarrollo en git}
+
+Se desarrollo el programa y se subieron los requerimientos a github incluyendo este documento.
+en el siguiente link:
+
+https://github.com/MiguelXx7/tarea1
+
+
+\section{Resultados}
+
+La instalación y configuración de las máquinas virtuales en QEMU permitió evaluar la compatibilidad y el rendimiento de cada sistema operativo en un entorno virtualizado. La ejecución de nmap facilitó el mapeo de la red interna, identificando los dispositivos conectados y sus respectivos puertos abiertos, lo que proporciona una visión clara de la infraestructura local. A nivel global, el análisis con nmap mostró la accesibilidad de nuestro sistema desde el exterior, lo que permite evaluar posibles vulnerabilidades. Además, la implementación de tareas automatizadas con cron y crontab demostró la eficiencia de la programación en sistemas Linux, ejecutando procesos periódicos sin intervención manual. Finalmente, la documentación estructurada y la subida del proyecto a GitHub garantizaron la trazabilidad y disponibilidad del trabajo, lo que facilita futuras referencias y mejoras.
+
+
+\section{Conclusiones}
+\begin{itemize}
+    \item Instalación de máquinas virtuales en QEMU: La virtualización de Windows, CentOS y Scientific Linux con QEMU permitió evaluar el desempeño y compatibilidad de cada sistema operativo dentro de un entorno controlado. La configuración adecuada de cada máquina virtual facilitó la interacción con el hardware y la red del equipo anfitrión.
+    \item Análisis de red con nmap: El escaneo de la red interna permitió identificar los dispositivos conectados y sus puertos abiertos, proporcionando información clave sobre la comunicación entre las máquinas virtuales y el sistema anfitrión. A nivel global, el análisis reflejó la visibilidad del sistema en la red externa, lo que es crucial para evaluar la exposición a posibles amenazas.
+    \item Automatización con cron y crontab: La implementación de tres tareas automáticas demostró la utilidad de cron en la ejecución programada de procesos. Esto optimizó la gestión de tareas recurrentes y minimizó la necesidad de intervención manual, mejorando la eficiencia operativa del sistema.
+    \item Las señales de se restan, en el amplificador de resta , se ve demostrado en el osciloscopio además en los resultados es evidente la resta de un ${v_2}$ a un ${v_1}$.
+    \item Documentación y repositorio en GitHub: La estructuración del proyecto en un repositorio GitHub dentro de la carpeta "Tarea 1" garantizó la organización y trazabilidad del desarrollo. Además, la documentación en Overleaf permitió una presentación clara y profesional de los procedimientos y resultados obtenidos.
+
+    
+\end{itemize}
+
+\begin{thebibliography}{00}
+\bibitem{b1} Documentacion oficial de qemu.
+https://www.qemu.org/documentation/
+
+\bibitem{b2}Guia de uso de nmap.
+https://www.geeksforgeeks.org/crontab-in-linux-with-examples/
+
+\bibitem{b3}Manual de cron y crontab.
+https://man7.org/linux/man-pages/man5/crontab.5.html
+
+\bibitem{b4}Documentación de GitHub y Overleaf:
+https://wiki.qemu.org/Documentation
+\end{thebibliography}
+
+
+\end{document}
+ 
